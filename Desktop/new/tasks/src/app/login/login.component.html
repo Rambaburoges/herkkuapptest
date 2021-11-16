@@ -1,0 +1,73 @@
+<!-- <p class="text-center">login works!</p> -->
+<div class="main-wrapper">
+    <div class="formBox">
+        <mat-card class="cardcss">
+            <!-- <div class="d-flex justify-content-end">
+                <div>
+                    <span class="navCss" (click)="toLogin()">Login |</span>
+                    <span class="navCss" (click)="toRegister()"> Signup</span>
+                </div> 
+            </div> -->
+          <p class="text-center p-2">Let's Sign You In</p>
+          <form class="form" [formGroup]="loginform" >
+            <div class="text-center">
+              <mat-form-field class="mat_form" appearance="outline">
+                <mat-label>Email</mat-label>
+                <input type="email" formControlName="user" matInput  autocomplete="off"/>
+                <mat-error class="mat-error" *ngIf="loginform.controls['user'].errors?.required &&
+                loginform.controls['user'].touched">
+                    This field is required
+                  </mat-error>
+                  <mat-error class="mat-error" *ngIf="loginform.controls['user'].errors?.email &&
+                loginform.controls['user'].touched">
+                Please enter a valid email address
+            </mat-error>
+              </mat-form-field>
+              
+              <mat-form-field class="mat_form" appearance="outline">
+                <mat-label>Enter password</mat-label>
+                <input
+                  matInput
+                  autocomplete="off"
+                  [type]="hide ? 'password' : 'text'"
+                  formControlName="password"
+                  placeholder="Enter Your Password"
+                  
+                  minlength="6"
+                />
+                <button
+                  mat-icon-button
+                  matSuffix
+                  (click)="hide = !hide"
+                  [attr.aria-label]="'Hide password'"
+                  [attr.aria-pressed]="hide"
+                >
+                  <mat-icon>{{
+                    hide ? "visibility_off" : "visibility"
+                  }}</mat-icon>
+                </button>
+                <mat-error class="mat-error"*ngIf="loginform.controls['password'].errors?.required &&
+                loginform.controls['password'].touched">
+                This field is required
+            </mat-error>
+            <mat-error class="mat-error" *ngIf="loginform.value.password.length <= 6">
+            This field is required 6 characters
+        </mat-error>
+        
+              </mat-form-field>
+            </div>
+            <div class="text-center mt-md-4">
+              <button
+                class="signin_btn btn"
+            (click)= "submitLogin()"
+            [disabled]="!loginform.valid"
+                >
+                Login
+            </button>
+            </div>
+          </form>
+        </mat-card>
+    </div>
+    
+    </div>
+  
